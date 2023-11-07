@@ -110,7 +110,7 @@ h1 a {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
   grid-template-areas: "banner banner"
- "nav-2 nav-1";
+  "nav-2 nav-1";
   align-items: center; }
   .grid-container-1-bis .nav-1 {
     grid-area: nav-1;
@@ -275,10 +275,11 @@ main {
     width: 100%;
     padding-top: 50px;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 100px, repeat(3, 1fr);
+    grid-template-rows: 100px, repeat(2, 1fr);
     grid-row-gap: 50px;
-    grid-template-areas: "box-1 box-2"
-    "box-3 box-4"; }
+    grid-template-areas:  "box-0 box-0"
+                          "box-1 box-2"
+                          "box-3 box-4"; }
     .grid-container-2 .box-0 {
       width: 100%;
       grid-area: box-0;
@@ -376,6 +377,13 @@ main {
   color: black;
   text-align: center; }
 
+.subtitulos {
+  font-family: "Exo 2", sans-serif;
+  font-size: 20px;
+  text-align: center;
+  padding-left: 15px;
+  padding-bottom: 5px; }
+
 .precio {
   font-family: "Exo 2", sans-serif;
   font-size: 30px;
@@ -443,6 +451,9 @@ footer {
 
 .boton {
   background-color: #50b6f1;
+  font-family: "Exo 2", sans-serif;
+  font-size: 20px;
+  text-align: center;
   border-radius: 30px 0px 30px 0px;
   padding: 1px;
   margin-right: 5px;
