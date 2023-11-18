@@ -35,7 +35,7 @@ const containerProductos = document.querySelector("#containerProductos");
             </div>    
             
             <div class="box-2">
-                <p class="caracteristicas">Características del producto:</p>
+                <p class="caracteristicas">Características del producto</p>
                 <ul class="especificaciones"> 
                     <li>Pantalla: ${item.pantalla}</li>
                     <li>Almacenamiento: ${item.almacenamiento}</li>
@@ -76,11 +76,17 @@ const agregarCarrito = (id) => {
     let productoCarrito = productos.find((item) => item.id === id);
 
     Swal.fire({
-        title: 'Producto agregado a tu carrito!',
+        titleText: 'Producto agregado a tu carrito!',
         text: `Modelo: ${productoCarrito.modelo}. Precio: ${productoCarrito.precio} `,
         imageUrl: productoCarrito.imagen,
-        imageWidth: "auto",
+        imageWidth: "60%",
         imageHeight: "auto",
+        color: "blue",
+        // background: "black",
+        showCancelButton: "true",
+        cancelButtonText: "Cancelar",
+        icon: "success",
+        width: "auto",
     });
 }    
     
