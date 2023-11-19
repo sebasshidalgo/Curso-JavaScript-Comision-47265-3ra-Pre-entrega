@@ -33,9 +33,9 @@ const containerProductos = document.querySelector("#containerProductos");
                     <img class="box-img" src="${item.imagen}">
                 </div>
             </div>    
-            
+
             <div class="box-2">
-                <p class="caracteristicas">Características del producto</p>
+                <h3 class="caracteristicas">Características</h3>
                 <ul class="especificaciones"> 
                     <li>Pantalla: ${item.pantalla}</li>
                     <li>Almacenamiento: ${item.almacenamiento}</li>
@@ -48,13 +48,18 @@ const containerProductos = document.querySelector("#containerProductos");
 
             <div class="box-3">        
                 <div class="precio">
-                    <b>Precio: ${item.precio} USD</b>
+                    <h3>Precio:</h3>
+                    <b>${item.precio} USD</b>
                 </div>
             </div>
 
             <div class="box-4">
-                <button id="boton${item.id}" class="comprar">Agregar al carrito</button>
-                <b>Stock disponible: ${item.stock} unidades</b>
+                <button id="boton${item.id}" class="comprar">
+                <img src="./assets/logos/carro-de-la-compra.png">
+                <span>Agregar al carrito</span>
+                </button>
+                <b>Stock disponible:</b>
+                <b>${item.stock} unidades</b>
             </div>
         </div>
         <hr />
@@ -77,14 +82,16 @@ const agregarCarrito = (id) => {
 
     Swal.fire({
         titleText: 'Producto agregado a tu carrito!',
-        text: `Modelo: ${productoCarrito.modelo}. Precio: ${productoCarrito.precio} `,
+        text: `Modelo: ${productoCarrito.modelo} Precio: ${productoCarrito.precio} `,
         imageUrl: productoCarrito.imagen,
-        imageWidth: "60%",
+        imageWidth: "50%",
         imageHeight: "auto",
-        color: "blue",
-        // background: "black",
+        color: "rgba(196, 51, 201, 0.973)",
+        // background: "white",
         showCancelButton: "true",
         cancelButtonText: "Cancelar",
+        confirmButtonColor: "green",
+        cancelButtonColor: "red",
         icon: "success",
         width: "auto",
     });
