@@ -54,12 +54,16 @@ const containerProductos = document.querySelector("#containerProductos");
             </div>
 
             <div class="box-4">
-                <button id="boton${item.id}" class="comprar">
-                <img src="./assets/logos/carro-de-la-compra.png">
-                <span>Agregar al carrito</span>
-                </button>
-                <b>Stock disponible:</b>
-                <b>${item.stock} unidades</b>
+                <div>
+                    <button id="boton${item.id}" class="comprar">
+                        <img src="./assets/logos/carro-de-la-compra.png">
+                        <span>Agregar al carrito</span>
+                    </button>
+                </div>
+                <div class="stock">
+                    <h3>Stock disponible:</h3>
+                    <b>${item.stock} unidades</b>
+                </div>
             </div>
         </div>
         <hr />
@@ -81,19 +85,22 @@ const agregarCarrito = (id) => {
     let productoCarrito = productos.find((item) => item.id === id);
 
     Swal.fire({
-        titleText: 'Producto agregado a tu carrito!',
-        text: `Modelo: ${productoCarrito.modelo} Precio: ${productoCarrito.precio} `,
+        titleText: `Modelo: ${productoCarrito.modelo} agregado a tu carrito!`,
+        text: `[Código de producto: ${productoCarrito.id}]  | Precio: ${productoCarrito.precio} USD`,
         imageUrl: productoCarrito.imagen,
         imageWidth: "50%",
         imageHeight: "auto",
         color: "rgba(196, 51, 201, 0.973)",
-        // background: "white",
+        background: "white",
         showCancelButton: "true",
         cancelButtonText: "Cancelar",
-        confirmButtonColor: "green",
-        cancelButtonColor: "red",
+        customClass:{
+            confirmButton: 'swalBtnColor',
+            cancelButton: "swalBtnColor",
+        },
         icon: "success",
-        width: "auto",
+        width: "30em",
+        buttonsStyling: "false",
     });
 }    
     
