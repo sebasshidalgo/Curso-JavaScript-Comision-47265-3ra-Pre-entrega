@@ -10,8 +10,7 @@ font-family: 'Roboto Mono', monospace;
 */
 header {
   background-color: rgba(236, 138, 245, 0.555);
-  border-bottom: 3px outset rgba(0, 0, 0, 0.269) 
- }
+  border-bottom: 3px outset rgba(0, 0, 0, 0.269) }
 
 h1 {
   color: white;
@@ -88,12 +87,11 @@ h1 a {
         display: flex;
         margin-left: 15px; }
 
-.bc-main{
+.bc-main {
 	-webkit-animation: color-change-2x 3s linear infinite alternate both;
 	animation: color-change-2x 3s linear infinite alternate both;
   height: auto;
-  width: auto;
-}
+  width: auto; }
 
 @-webkit-keyframes color-change-2x{0%{background:#19dcea}100%{background:#b22cff}}@keyframes color-change-2x{0%{background:#19dcea}100%{background:#b22cff}}
 
@@ -129,14 +127,11 @@ h1 a {
       background-color: rgba(0, 0, 0, 0.144); 
       padding: 20px;
       border-radius: 10px 10px 10px 10px; 
-      height: 17em;
-      }
-
-      .box-1:hover{
+      height: 17em; }
+      .box-1:hover {
         box-shadow: 0 8px 16px rgba(3, 3, 3, 3);
         text-shadow: 2px 2px 4px rgb(8, 8, 8);
-        transform: scale(1.10);
-      }
+        transform: scale(1.10); }
     .grid-container-2 .box-2 {
       width: 22em;
       grid-area: box-2;
@@ -148,16 +143,11 @@ h1 a {
       transition: transform 0.3s ease-in-out;
       background-color: rgba(0, 0, 0, 0.144); 
       padding: 20px;
-      border-radius: 10px 10px 10px 10px; 
-      }
-
-      .box-2:hover{
+      border-radius: 10px 10px 10px 10px; }
+      .box-2:hover {
         transform: scale(1.10); 
         box-shadow: 0 8px 5px rgba(51, 240, 240, 0.815);;
-        text-shadow: 2px 2px 4px rgb(8, 8, 8);
-      }
-
-
+        text-shadow: 2px 2px 4px rgb(8, 8, 8); }
     .grid-container-2 .box-3 {
       grid-area: box-3;
       display: flex;
@@ -172,11 +162,10 @@ h1 a {
       transition: transform 0.3s ease-in-out;
       background-color: rgba(0, 0, 0, 0.144); 
       border-radius: 10px 10px 10px 10px;
-      padding: 10px; 
-      }
+      padding: 10px; }
       /* .box-3:hover{
       box-shadow: 0 8px 16px rgba(3, 3, 3, 3);
-    } */
+      } */
     .grid-container-2 .box-4 {
       font-family: "Roboto Mono", monospace;
       color: white; 
@@ -193,20 +182,17 @@ h1 a {
       transition: transform 0.3s ease-in-out;
       background-color: rgba(0, 0, 0, 0.144);  
       padding: 15px;
-      border-radius: 10px 10px 10px 10px; 
-    }
-      .box-4:hover{
+      border-radius: 10px 10px 10px 10px; }
+      .box-4:hover {
       box-shadow: 0 8px 16px rgba(3, 3, 3, 3);
-    }
-    .grid-container-2 .box-img{
+      }
+    .grid-container-2 .box-img {
       width: 10em;
       height: auto;
-      padding-top: 20px;
-    }  
+      padding-top: 20px; }  
     .grid-container-2 .box-img:hover {
       -webkit-animation: kenburns-top 1.5s ease-out both;
-	  animation: kenburns-top 1.5s ease-out both;
-      }
+	    animation: kenburns-top 1.5s ease-out both; }
 
 @-webkit-keyframes kenburns-top{0%{-webkit-transform:scale(1) translateY(0);transform:scale(1) translateY(0);-webkit-transform-origin:50% 16%;transform-origin:50% 16%}100%{-webkit-transform:scale(1.1) translateY(-10px);transform:scale(1.1) translateY(-10px);-webkit-transform-origin:top;transform-origin:top}}@keyframes kenburns-top{0%{-webkit-transform:scale(1) translateY(0);transform:scale(1) translateY(0);-webkit-transform-origin:50% 16%;transform-origin:50% 16%}100%{-webkit-transform:scale(1.1) translateY(-10px);transform:scale(1.1) translateY(-10px);-webkit-transform-origin:top;transform-origin:top}}
 
@@ -241,7 +227,7 @@ h1 a {
   color: white;
   text-align: center;
   text-decoration: underline;
-  transition: text-shadow 0.3s;}
+  transition: text-shadow 0.3s; }
 
 .especificaciones {
   font-family: "Exo", sans-serif;
@@ -250,10 +236,9 @@ h1 a {
   color: white;
   padding-top: 2.1em;
   list-style: none;
-  transition: text-shadow 0.3s;
-}
+  transition: text-shadow 0.3s; }
 
-.comprar{
+.comprar {
   padding: 10px 20px; 
   background-color: rgba(196, 51, 201, 0.973);
   color: white; 
@@ -267,29 +252,27 @@ h1 a {
   cursor: pointer; 
   transition: background-color 0.3s, transform 0.3s; 
   box-shadow: 0 1px 3px rgba(0, 0, 1, 1);
-  margin-bottom: 0.8em;
-}
+  margin-bottom: 0.8em; }
+
 .comprar img {
   width: 1.4em; 
   margin-right: 10px;
-  transition: transform 0.3s;
-}
-.comprar:hover{
+  transition: transform 0.3s; }
+
+.comprar:hover {
   background-color: rgb(189, 151, 223);
   transform: scale(1.13);
   box-shadow: 4px 4px 16px rgb(238, 38, 238);
-  font-size: 0.77em;
-}
+  font-size: 0.77em; }
 
-.comprar:hover img{
-  transform: scale(1.7);
-}
+.comprar:hover img {
+  transform: scale(1.7); }
 
-.stock{
+.stock {
   font-size: 0.65em;
   text-align: center;
-  align-items: center;
-}
+  align-items: center; }
+
 .subtitulos h2 {
   padding-bottom: 2px; }
 
@@ -297,13 +280,12 @@ footer {
   background-color: rgba(18, 143, 245, 0.473);
   display: flex; }
 
-.social-media{
+.social-media {
   font-family: "Roboto Mono", monospace;
   color: rgba(146, 54, 233, 0.918);
   font-size: 1em;
   text-shadow: 0px 1.5px 1px rgba(0, 0, 0, 0.664);
-  margin: 10px;
-}
+  margin: 10px; }
 
   .grid-container-3 {
     display: grid;
@@ -334,19 +316,17 @@ footer {
   margin-right: 15px;
   width: 7em;
   margin-top: 5px; 
-  box-shadow: 0 1px 3px rgba(0, 0, 1, 1);}
+  box-shadow: 0 1px 3px rgba(0, 0, 1, 1); }
 
-.swal2-title{
+.swal2-title {
   font-family: "Exo 2", sans-serif;
   font-size: 1.2em;
-  text-shadow: 0 1px 2px rgb(23, 24, 24);
-}
+  text-shadow: 0 1px 2px rgb(23, 24, 24); }
 
-.swal2-container{
-  font-family: "Exo 2", sans-serif;
-}
+.swal2-container {
+  font-family: "Exo 2", sans-serif; }
 
-.swal2-styled.swal2-confirm.swalBtnColor{
+.swal2-styled.swal2-confirm.swalBtnColor {
   padding: 10px 20px; 
   background-color: rgb(10, 168, 71);
   color: white; 
@@ -360,16 +340,14 @@ footer {
   cursor: pointer; 
   transition: background-color 0.3s, transform 0.3s; 
   box-shadow: 0 1px 3px rgba(0, 0, 1, 1);
-  margin-bottom: 0.8em;
-}
+  margin-bottom: 0.8em; }
 
-.swal2-styled.swal2-confirm.swalBtnColor:hover{
+.swal2-styled.swal2-confirm.swalBtnColor:hover {
   background-color: rgb(189, 151, 223);
   transform: scale(1.15);
-  box-shadow: 0 4px 10px rgb(238, 38, 238);
-}
+  box-shadow: 0 4px 10px rgb(238, 38, 238); }
 
-.swal2-styled.swal2-cancel.swalBtnColor{
+.swal2-styled.swal2-cancel.swalBtnColor {
   padding: 10px 20px; 
   background-color: rgba(226, 51, 74, 0.973);
   color: white; 
@@ -383,11 +361,9 @@ footer {
   cursor: pointer; 
   transition: background-color 0.3s, transform 0.3s; 
   box-shadow: 0 1px 3px rgba(0, 0, 1, 1);
-  margin-bottom: 0.8em;
-}
+  margin-bottom: 0.8em; }
 
-.swal2-styled.swal2-cancel.swalBtnColor:hover{
+.swal2-styled.swal2-cancel.swalBtnColor:hover{ 
   background-color: rgb(189, 151, 223);
   transform: scale(1.15);
-  box-shadow: 0 4px 10px rgb(238, 38, 238);
-}
+  box-shadow: 0 4px 10px rgb(238, 38, 238); }
