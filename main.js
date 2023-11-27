@@ -3,7 +3,7 @@
 // };
 
 
-const cargarProductos = () =>{
+const cargarProductos = () => {
 
     // Traemos el div contenedor padre donde agregaremos los productos
     const containerProductos = document.querySelector("#containerProductos");
@@ -61,76 +61,111 @@ const cargarProductos = () =>{
                     <hr />
                     `;
                     
-                //Agregamos el nodo creado al html
+                div.setAttribute('id', `producto-${item.id}`);
+                
+                    //Agregamos el nodo creado al html
                 containerProductos.append(div);
             
                 //Agregamos un evento que reconozca el boton seleccionado
                 let boton = document.getElementById(`boton${item.id}`);
-                boton.addEventListener("click", () => agregarCarrito(item.id));
-                });
-                const arrayCarrito =[];
-                // Agregando productos al carrito
-                const agregarCarrito = (id) => {
-                    let productoCarrito = data.find((item) => item.id === id);
-    
-    
-                    if(productoCarrito.stock > 0){
-                        Swal.fire({
-                            titleText: `Modelo ${productoCarrito.modelo} agregado a tu carrito!`,
-                            text: `[Código de producto: ${productoCarrito.id}]  | Precio: ${productoCarrito.precio} USD`,
-                            imageUrl: productoCarrito.imagen,
-                            imageWidth: "40%",
-                            imageHeight: "auto",
-                            color: "rgba(196, 51, 201, 0.973)",
-                            background: "white",
-                            showCancelButton: "true",
-                            cancelButtonText: "Cancelar",
-                            customClass:{
-                                confirmButton: 'swalBtnColor',
-                                cancelButton: "swalBtnColor",
-                                },
-                            icon: "success",
-                            width: "27em",
-                            buttonsStyling: "false",
-                            showLoaderOnConfirm: "true",
-                            preConfirm: () => {
-                                return new Promise((resolve) => {
-                                    setTimeout(() => {
-                                        arrayCarrito.push(productoCarrito);
-                                        resolve();
-                                    }, 1500);
-                                    });
-                                }
-                            }).then((result) => {
-                            if (result.isConfirmed){
-                                console.log(arrayCarrito);
-                            }else if(result.dismiss === Swal.DismissReason.cancel){
-                                console.log("clickeo cancelar");
-                            }
-                            });
-                            }else{
-                                Swal.fire({
-                                    titleText: `Modelo ${productoCarrito.modelo} no disponible!`,
-                                    text: `[Código de producto: ${productoCarrito.id}]  | Stock: ${productoCarrito.stock} unidades`,
-                                    imageUrl: productoCarrito.imagen,
-                                    imageWidth: "40%",
-                                    imageHeight: "auto",
-                                    color: "rgba(196, 51, 201, 0.973)",
-                                    background: "white",
-                                    customClass:{
-                                        confirmButton: 'swalBtnColor',
-                                        },
-                                    icon: "error",
-                                    width: "27em",
-                                    buttonsStyling: "false",
-                                });
-                            }
-    
-                            
-                        };    
+                boton.addEventListener("click", () => agregarCarrito(item.id, data));
+                });   
             });
-            
+    };
+
+const arrayCarrito =[];
+// Agregando productos al carrito
+const agregarCarrito = (id, data) => {
+    const productoCarrito = data.find((item) => item.id === id);
+
+    if(productoCarrito.stock > 0){
+        Swal.fire({
+            titleText: `${productoCarrito.modelo} será agregado a tu carrito`,
+            text: `Precio: ${productoCarrito.precio} USD`,
+            imageUrl: productoCarrito.imagen,
+            imageWidth: "40%",
+            imageHeight: "auto",
+            color: "rgba(196, 51, 201, 0.973)",
+            background: "white",
+            confirmButtonText: "Aceptar",
+            showCancelButton: "true",
+            cancelButtonText: "Cancelar",
+            customClass:{
+                confirmButton: 'swalBtnColor',
+                cancelButton: "swalBtnColor",
+                },
+            icon: "warning",
+            iconColor: "rgba(196, 51, 201, 0.973)",
+            width: "25em",
+            buttonsStyling: "false",
+            showLoaderOnConfirm: "true",
+            preConfirm: () => {
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        arrayCarrito.push(productoCarrito);
+                        resolve();
+                        }, 1000);
+                    });
+                }
+            }).then((result) => {
+                if (result.isConfirmed){
+                    console.log(arrayCarrito); // esto me sirve para probar que este funcionando, dsp COMENTAR
+                    localStorage.setItem("carrito", JSON.stringify(arrayCarrito));
+                    productoCarrito.stock -=1;
+                    const cardStock = document.getElementById(`producto-${productoCarrito.id}`);
+                    if (cardStock){
+                        const divStock = cardStock.querySelector('.stock b');
+                        if (divStock) {
+                            divStock.textContent = `${productoCarrito.stock} unidades`;
+                        }
+                    }
+                    Swal.fire({
+                        titleText: `${productoCarrito.modelo} agregado exitosamente!`,
+                        text: `[ID de producto: ${productoCarrito.id}] Stock disponible: ${productoCarrito.stock}`,
+                        showConfirmButton: false,
+                        timer: 3500,
+                        timerProgressBar: true,
+                        color: "white",
+                        background: "rgb(189, 151, 223)",
+                        iconColor: "white",
+                        width: "25em",
+                        icon: "success",
+                    });
+                }else if(result.dismiss === Swal.DismissReason.cancel){
+                    Swal.fire({
+                        toast: true,
+                        position: "center",
+                        iconColor: "white",
+                        icon: "info",
+                        titleText: "Producto no agregado!",
+                        customClass: {
+                            popup: 'colored-toast',
+                        },
+                        showConfirmButton: false,
+                        timer: 3500,
+                        timerProgressBar: true,
+                    })
                 };
+            });
+    }else{
+        Swal.fire({
+            titleText: `${productoCarrito.modelo} no disponible!`,
+            text: `Stock: ${productoCarrito.stock} unidades`,
+            imageUrl: productoCarrito.imagen,
+            imageWidth: "40%",
+            imageHeight: "auto",
+            color: "rgba(196, 51, 201, 0.973)",
+            background: "white",
+            confirmButtonText: "Aceptar",
+            customClass:{
+                confirmButton: 'swalBtnColor',
+                },
+            icon: "error",
+            width: "25em",
+            buttonsStyling: "false",
+            });
+        };
+    }; 
 
 
 cargarProductos();
