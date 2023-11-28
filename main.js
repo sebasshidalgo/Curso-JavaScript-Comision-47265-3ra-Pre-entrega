@@ -1,14 +1,10 @@
-// const cargarCarrito = (id) => {
-
-// };
-
-
+//Carga de productos en el index.html
 const cargarProductos = () => {
 
-    // Traemos el div contenedor padre donde agregaremos los productos
+    //Traemos el <div> contenedor padre donde agregaremos los productos
     const containerProductos = document.querySelector("#containerProductos");
 
-    // Utilizamos fetch para traer el array de productos de nuestro archivo .json
+    //Utilizamos fetch para traer el array de productos de nuestro archivo .json
     fetch("./data.json")
         .then((response) => response.json())
         .then((data) => {
@@ -61,23 +57,27 @@ const cargarProductos = () => {
                     <hr />
                     `;
                     
+                //Asignamos un ID para el <div> de Stock para luego poder actualizar las cantidades al agregar productos al carrito
                 div.setAttribute('id', `producto-${item.id}`);
                 
-                    //Agregamos el nodo creado al html
+                //Agregamos el nodo creado al index.html
                 containerProductos.append(div);
             
-                //Agregamos un evento que reconozca el boton seleccionado
+                //Agregamos un evento que reconozca el boton seleccionado y permita traer los datos del producto
                 let boton = document.getElementById(`boton${item.id}`);
                 boton.addEventListener("click", () => agregarCarrito(item.id, data));
                 });   
             });
     };
 
+//Array donde se cargarán los productos agregados al carrito
 const arrayCarrito =[];
-// Agregando productos al carrito
+
+//Agregando productos al carrito
 const agregarCarrito = (id, data) => {
     const productoCarrito = data.find((item) => item.id === id);
 
+    //Validación de stock y modales con Swal
     if(productoCarrito.stock > 0){
         Swal.fire({
             titleText: `${productoCarrito.modelo} será agregado a tu carrito`,
@@ -102,31 +102,31 @@ const agregarCarrito = (id, data) => {
             preConfirm: () => {
                 return new Promise((resolve) => {
                     setTimeout(() => {
-                        arrayCarrito.push(productoCarrito);
+                        arrayCarrito.push(productoCarrito);  //Función asincrona que guarda los productos agregados en el [carrito]
                         resolve();
                         }, 1000);
                     });
                 }
             }).then((result) => {
                 if (result.isConfirmed){
-                    console.log(arrayCarrito); // esto me sirve para probar que este funcionando, dsp COMENTAR
-                    localStorage.setItem("carrito", JSON.stringify(arrayCarrito));
-                    productoCarrito.stock -=1;
+                    // console.log(arrayCarrito); //Sirve para probar si funciona
+                    sessionStorage.setItem("carrito", JSON.stringify(arrayCarrito)); //Guardando la info del [carrito] en el Storage 
+                    productoCarrito.stock -=1;  //Descontando el stock
                     const cardStock = document.getElementById(`producto-${productoCarrito.id}`);
                     if (cardStock){
                         const divStock = cardStock.querySelector('.stock b');
                         if (divStock) {
-                            divStock.textContent = `${productoCarrito.stock} unidades`;
+                            divStock.textContent = `${productoCarrito.stock} unidades`; //Actualizando la información del stock disponible
                         }
                     }
                     Swal.fire({
                         titleText: `${productoCarrito.modelo} agregado exitosamente!`,
                         text: `[ID de producto: ${productoCarrito.id}] Stock disponible: ${productoCarrito.stock}`,
                         showConfirmButton: false,
-                        timer: 3500,
+                        timer: 4500,
                         timerProgressBar: true,
                         color: "white",
-                        background: "rgb(189, 151, 223)",
+                        background: "rgb(238, 38, 238)",
                         iconColor: "white",
                         width: "25em",
                         icon: "success",
@@ -170,23 +170,35 @@ const agregarCarrito = (id, data) => {
 
 cargarProductos();
 
+//Traemos la info del Storage con los productos agregados al [carrito] y los mostramos en carrito.html
+let carritoConfirmado;
+let carritoStorage = sessionStorage.getItem("carrito");
+// console.log(carritoStorage); //Sirve para probar si funciona
 
-//Algo asi tendria que ser el html de carrito pero necesito sacar la funcion de carrito del fetch de productos sino tira error por los scopes
+if(carritoStorage){
+    carritoConfirmado = JSON.parse(carritoStorage);
+}else{
+    carritoConfirmado = [];
+}
 
-// const containerCarrito = document.querySelector("#containerCarrito");
+//Traemos el <div> contenedor padre donde agregaremos los productos
+const containerCarrito = document.querySelector("#containerCarrito");
 
-// arrayCarrito.forEach((item) => {
-//     let div = document.createElement("div");
-//     div.innerHTML = `
-//         <div class="grid-container-2">
-//             <div class="box-1"> 
-//                 <div class="productos">
-//                     <h2>${item.modelo}</h2>
-//                 </div>
-//                 <div> 
-//                     <img class="box-img" src="${item.imagen}">
-//                 </div>
-//             </div>`;
+//Recorremos el [carrito] y vamos creando mediante DOM las etiquetas html 
+carritoConfirmado.forEach((item) => {
+    let div = document.createElement("div");
+    div.innerHTML = `
+        <div class="grid-container-2">
+            <div class="box-1"> 
+                <div class="productos">
+                    <h2>${item.modelo}</h2>
+                </div>
+                <div> 
+                    <img class="box-img" src="../${item.imagen}">
+                </div>
+            </div>
+            `;
 
-//             containerCarrito.append(div);
-// })
+            //Agregamos el nodo creado a carrito.html
+            containerCarrito.append(div);
+});
